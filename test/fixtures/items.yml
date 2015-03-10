@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  image: MyString
+  borrow_period: 1
+  borrowed_period: 1
+  owner_id: 1
+  borrower_id: 1
+
+two:
+  name: MyString
+  description: MyText
+  image: MyString
+  borrow_period: 1
+  borrowed_period: 1
+  owner_id: 1
+  borrower_id: 1
