@@ -20,4 +20,9 @@ class User < ActiveRecord::Base
     # Borrower
     has_many :borrowed_items, foreign_key: :borrower_id, class_name: 'Item'
     has_many :borrowers, through: :borrowed_items 
+
+    # To do create a scope for items which have been specifically borrowed and no longer in the 
+    # lender's possession.
+    # Remember the lender owns items but if he lends them out then they are 'lent' in which case it
+    # should be possible to get that list of lent items specifically
 end
