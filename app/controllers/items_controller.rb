@@ -27,8 +27,8 @@ end
 
 def create
 
-@item = Item.new(name: params[:item][:name], description: params[:item][:description], borrow_period: params[:item][:borrow_period], owner_id: params[:item][:owner_id], picture: params[:item][:picture])
-@item.borrower_id=current_user.id
+@item = Item.new(name: params[:item][:name], description: params[:item][:description], borrow_period: params[:item][:borrow_period], lender_id: params[:item][:lender_id], picture: params[:item][:picture])
+@item.lender_id=current_user.id
 if @item.save
   redirect_to items_path
 else

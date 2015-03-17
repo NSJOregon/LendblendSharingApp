@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     # for now.
 
     # Lender
-    has_many :items, foreign_key: :lender_id
+    has_many :items, foreign_key: :lender_id 
     has_many :lenders, through: :items
 
 

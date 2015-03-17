@@ -10,6 +10,7 @@ class AddPersonalDataToUser < ActiveRecord::Migration
       t.string :phone_number
       t.string :lender_rating
       t.string :borrower_rating
+
      end
   end
 end

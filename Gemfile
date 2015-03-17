@@ -20,6 +20,8 @@ gem 'sinatra-session'
 gem 'carrierwave'
 gem 'carrierwave-sequel'
 gem 'sequel'
+gem 'rmagick'
+gem 'mini_magick'
 =begin
 gem 'mini_magick'
 gem 'rmagick'
