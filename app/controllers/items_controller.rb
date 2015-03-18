@@ -18,8 +18,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    @item.lender=current_user.id
+    @item = current_user.items.new(item_params)
 
     if @item.save
       redirect_to items_path
@@ -30,7 +29,7 @@ class ItemsController < ApplicationController
   end
 
   def update
-    @item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
 
     if @item.update(item_params)
 
@@ -43,7 +42,7 @@ class ItemsController < ApplicationController
 
 
   def destroy
-    @item = Item.find(params[:id])
+    @item = current_user.items.find(params[:id])
     @item.destroy
     
     redirect_to items_path
