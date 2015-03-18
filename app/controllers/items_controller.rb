@@ -20,7 +20,6 @@ class ItemsController < ApplicationController
 
   def create
     @item = current_user.items.new(item_params)
-    #@item.lender.id = current_user.id
 
     if @item.save
       redirect_to items_path
