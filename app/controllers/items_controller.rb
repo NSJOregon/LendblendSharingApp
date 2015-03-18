@@ -19,7 +19,8 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = current_user.items.new(item_params)
+    @item = Item.new(item_params)
+    #@item.lender.id = current_user.id
 
     if @item.save
       redirect_to items_path
@@ -54,5 +55,4 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :description, :borrow_period, :lender, :picture)
   end
-
 end
