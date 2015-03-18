@@ -28,6 +28,11 @@ class User < ActiveRecord::Base
        items.where("borrower_id > 0")
     end
 
+    # Borrow an item
+    def borrow(borrowed_item)
+      borrowed_items << borrowed_item
+    end
+
     # Remember the lender owns items but if he lends them out then they are 'lent' in which case it
     # should be possible to get that list of lent items specifically
 end
