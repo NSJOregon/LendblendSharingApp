@@ -1,65 +1,58 @@
 class ItemsController < ApplicationController
 
-def index
-
-@items = Item.all
-
-end
+  def index
+    @items = Item.all
+  end
 
 
-def show
+  def show
+    @item = Item.find(params[:id])
+  end
 
-@item = Item.find(params[:id])
+  def new
+    @item = Item.new
+  end
 
-end
+  def edit
+    @item = Item.find(params[:id])
+  end
 
-def new
+  def create
+    @item = Item.new(item_params)
+    @item.lender=current_user.id
 
-  @item = Item.new
+    if @item.save
+      redirect_to items_path
+    else
+      @errors = @item.errors
+      render :new
+    end
+  end
 
-end
+  def update
+    @item = Item.find(params[:id])
 
-def edit
+    if @item.update(item_params)
 
-@item = Item.find(params[:id])
-
-end
-
-def create
-
-@item = Item.new(name: params[:item][:name], description: params[:item][:description], borrow_period: params[:item][:borrow_period], lender_id: params[:item][:lender_id], picture: params[:item][:picture])
-@item.lender_id=current_user.id
-if @item.save
-  redirect_to items_path
-else
-  @errors = @item.errors
-  render :new
-end
-
-
-end
-
-def update
-@item = Item.find(params[:id])
-if @item.update(name: params[:item][:name], description: params[:item][:description], borrow_period: params[:item][:borrow_period], owner_id: params[:item][:owner_id], picture: params[:item][:picture])
-
-   redirect_to items_path
-else
-   @errors = @item.errors
-   render :edit
-end
-
-end
+       redirect_to items_path
+    else
+       @errors = @item.errors
+       render :edit
+    end
+  end
 
 
-def destroy
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    
+    redirect_to items_path
+  end
 
-@item = Item.find(params[:id])
-@item.destroy
-redirect_to items_path
+  private
 
-end
-
-
+  def item_params
+    params.require(:item).permit(:name, :description, :borrow_period, :lender, :picture)
+  end
 
 end
