@@ -3,7 +3,7 @@ class CreateItems < ActiveRecord::Migration
     create_table :items do |t|
       t.string :name
       t.text :description
-      t.string :image
+      t.string :picture
       t.integer :borrow_period
       t.integer :borrowed_period
       t.integer :lender_id, :index =>true
