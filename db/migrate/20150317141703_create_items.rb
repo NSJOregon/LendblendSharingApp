@@ -6,8 +6,8 @@ class CreateItems < ActiveRecord::Migration
       t.string :picture
       t.integer :borrow_period
       t.integer :borrowed_period
-      t.string :lender, :index =>true
-      t.string :borrower, :index =>true
+      t.references :lender, :index =>true
+      t.references :borrower, :index =>true
 
       t.timestamps null: false
     end

@@ -11,22 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317141703) do
-
-  create_table "items", force: :cascade do |t|
-    t.string   "name"
-    t.text     "description"
-    t.string   "picture"
-    t.integer  "borrow_period"
-    t.integer  "borrowed_period"
-    t.string   "lender"
-    t.string   "borrower"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
-
-  add_index "items", ["borrower"], name: "index_items_on_borrower"
-  add_index "items", ["lender"], name: "index_items_on_lender"
+ActiveRecord::Schema.define(version: 20150308223536) do
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
