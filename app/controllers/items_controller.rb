@@ -19,7 +19,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
+    @item = current_user.items.new(item_params)
     #@item.lender.id = current_user.id
 
     if @item.save
