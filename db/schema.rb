@@ -19,14 +19,14 @@ ActiveRecord::Schema.define(version: 20150317141703) do
     t.string   "picture"
     t.integer  "borrow_period"
     t.integer  "borrowed_period"
-    t.integer  "lender_id"
-    t.integer  "borrower_id"
+    t.string   "lender"
+    t.string   "borrower"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
   end
 
-  add_index "items", ["borrower_id"], name: "index_items_on_borrower_id"
-  add_index "items", ["lender_id"], name: "index_items_on_lender_id"
+  add_index "items", ["borrower"], name: "index_items_on_borrower"
+  add_index "items", ["lender"], name: "index_items_on_lender"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
