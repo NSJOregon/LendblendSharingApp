@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:create, :update, :destroy]
   
   def index
-    @items = Item.all
+    @items = current_user.items.all
   end
 
 
@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = current_user.items.new(item_params)
-
+    
     if @item.save
       redirect_to items_path
     else
@@ -52,6 +52,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :borrow_period, :lender, :picture)
+    params.require(:item).permit(:name, :description, :borrow_period, :borrower_id,:lender, :picture)
   end
 end

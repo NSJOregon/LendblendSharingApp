@@ -1,0 +1,2 @@
+module BorrowedHelper
+end

@@ -16,13 +16,14 @@ ActiveRecord::Schema.define(version: 20150317141703) do
   create_table "items", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
-    t.string   "picture"
+    t.string   "image"
     t.integer  "borrow_period"
     t.integer  "borrowed_period"
     t.integer  "lender_id"
     t.integer  "borrower_id"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "picture"
   end
 
   add_index "items", ["borrower_id"], name: "index_items_on_borrower_id"

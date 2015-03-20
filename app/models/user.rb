@@ -24,13 +24,22 @@ class User < ActiveRecord::Base
     # To do create a scope for items which have been specifically borrowed and no longer in the 
     # lender's possession.
 
-    def borrowed_items
-       items.where("borrower_id > 0")
+    
+
+    #def borrowed_items
+    #   items.where("borrower_id > 0")
+    #end
+
+    #unborrow and item
+    def unborrow(item)
+       item.update_attributes(:borrower_id => "0")
     end
 
+
     # Borrow an item
-    def borrow(borrowed_item)
-      borrowed_items << borrowed_item
+    def borrow(item)
+      item.update_attributes(:borrower_id => self.id)
+      #borrowed_items << borrowed_item
     end
 
     # Remember the lender owns items but if he lends them out then they are 'lent' in which case it

@@ -1,0 +1,11 @@
+<h1>Borrowed#index</h1>
+<<% @checked_out_items.each do |item| %>
+      <%= div_for item do %>
+      <h2><%= item.name %></h2>
+      <p><%= item.description %></p>
+      <p><%= image_tag item.picture_url(:thumb) %></p>
+      <p><%= link_to 'Show', item_path(item) %></p> 
+      
+    <% end %>
+
+<% end %>
