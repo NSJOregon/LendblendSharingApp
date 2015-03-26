@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'notborrowed/index'
+
   get 'borrowed/index'
 
   devise_for :users

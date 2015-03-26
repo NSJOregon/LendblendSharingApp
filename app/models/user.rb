@@ -26,15 +26,14 @@ class User < ActiveRecord::Base
 
     
 
-    #def borrowed_items
-    #   items.where("borrower_id > 0")
-    #end
+    def not_borrowed_items
+       items.where("borrower_id = 0")
+    end
 
     #unborrow and item
     def unborrow(item)
        item.update_attributes(:borrower_id => "0")
     end
-
 
     # Borrow an item
     def borrow(item)
