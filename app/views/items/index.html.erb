@@ -1,27 +1,31 @@
+<h1>YOUR ITEMS</h1>
+<hr>
+
+<div>
+  <%= link_to "Add an item", new_item_path %>
+</div>
+<hr>
+
 <% @items.each do |item| %>
       <%= div_for item do %>
       <h2><%= item.name %></h2>
       <p><%= item.description %></p>
       <p><%= image_tag item.picture_url(:thumb) %></p>
-
-	<%= item.borrower_id %>
     
-	<% if item.borrower_id.eql?(0) %>
-		<p> Not Borrowed!</p>
-	<%else%>
-		<p> Borrowed!</p>
-	<%end%> 
+		<% if item.borrower_id.eql?(0) %>
+			<p> Not Borrowed!</p>
+		<%else%>
+
+			<p> Borrowed!</p>
+			<%= link_to "Item was returned", returned_path(item)%> 				
+		<%end%> 
 
 
-
-
-      <p><%= link_to 'Show', item_path(item) %> |
+      	<p><%= link_to 'Show', item_path(item) %> |
         <%= link_to 'Edit', edit_item_path(item) %> |
         <%= link_to 'Delete', item, :method => :delete, :confirm => "Are you sure?" %></p>
+        <hr>
     <% end %>
 
 <% end %>
 
-<div class='pull-right'>
-  <%= link_to "Add an item", new_item_path %>
-</div>

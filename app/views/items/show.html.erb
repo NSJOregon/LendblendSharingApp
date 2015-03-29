@@ -1,7 +1,11 @@
+
+<p><%= link_to 'CLOSE', :back %></p>
+
 <div>
   
   <h1><%= @item.name %></h1>
   <p><%= @item.description %></p>
+  <p><%= image_tag @item.picture_url(:regular) %></p>
+  
 
-   <p><%= link_to 'Back', items_path %> | <%= link_to 'Edit', edit_item_path(@item) %></p>
 </div>

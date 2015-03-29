@@ -5,6 +5,32 @@ class ItemsController < ApplicationController
     @items = current_user.items.all
   end
 
+  def home
+    @owned_items = current_user.items.all
+    @already_borrowed_items = current_user.borrowed_items
+    @all_borrowable_items = current_user.borrowable_items
+  end
+
+
+  def borrowable
+    @all_borrowable_items = current_user.borrowable_items
+   end
+
+  def borrow_borrowable
+    @item = Item.find(params[:id])
+    current_user.borrow(@item)  
+    redirect_to items_borrowable_path
+  end
+
+  def borrowed
+    @already_borrowed_items = current_user.borrowed_items
+  end
+
+  def returned
+    @item = Item.find(params[:id])
+    current_user.unborrow(@item)
+    redirect_to items_path
+  end
 
   def show
     @item = Item.find(params[:id])
@@ -52,6 +78,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :borrow_period, :borrower_id,:lender, :picture)
+    params.require(:item).permit(:id, :name, :description, :borrow_period, :borrower_id,:lender, :picture)
   end
 end

@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  get 'notborrowed/index'
+  #get 'notborrowed/index'
 
-  get 'borrowed/index'
+  #get 'borrowed/index'
+  get 'items/borrowable'
+  get 'items/borrow_borrowable/:id' => "items#borrow_borrowable", :via => [:get], as: "borrow_borrowable" 
+  get 'items/returned/:id' => "items#returned", :via => [:get], as: "returned"
+  get 'items/borrowed'
+  get 'items/home'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -10,7 +15,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
   resources :items
-  #resources :users
+  #resources :notborrowed
   #resources :drinks 
   root 'welcome#index'
   # Example of regular route:

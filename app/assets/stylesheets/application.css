@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+html *
+{
+	background: url('/assets/tools.jpg') repeat center center fixed;
+    -moz-background-size: auto;
+    -webkit-background-size: auto;
+    background-size: auto;
+
+	font-family: Arial
+	!important;
+
+}
+
+<!--
+	A{text-decoration:none}
+-->
+		    

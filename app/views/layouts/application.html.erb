@@ -12,6 +12,26 @@
 <div class = "container">
 <% if notice %>  <div class = "alert alert-info"><%= notice %> </div><%end%>
 <% if alert %> <div class = "alert alert-warning"><%= alert %> </div><%end%>
+
+<% if user_signed_in? %>
+
+	<%= link_to "HOME", welcome_index_path %> |
+	<%= link_to "YOUR ITEMS", items_path %> |
+	<%= link_to "BORROWED ITEMS", items_borrowed_path %> |
+	<%= link_to "BORROWABLE ITEMS", items_borrowable_path %> |
+	
+	<%= link_to current_user.email, edit_user_registration_path %> 
+	<%= link_to "LOGOUT", destroy_user_session_path, method: :delete %>
+
+
+
+
+    
+<%else%>
+	<%= link_to "SIGN UP", new_user_registration_path %>
+	<%= link_to "LOGIN", new_user_session_path %>
+<%end%> 
+<hr>
 <%= yield %>
 </div>
 

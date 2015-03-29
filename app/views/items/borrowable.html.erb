@@ -1,0 +1,12 @@
+<h1>BORROWABLE ITEMS</h1>
+<hr>
+<% @all_borrowable_items.each do |item| %>
+      <%= div_for item do %>
+      	<h2><%= item.name %></h2>
+      	<p><%= item.description %></p>
+      	<p><%= image_tag item.picture_url(:thumb) %></p>
+      	<p><%= link_to 'Show', item_path(item) %></p>
+      	<p><%= link_to 'Borrow', borrow_borrowable_path(item)%></p>
+      	<hr>
+      <%end%>
+    <% end %>

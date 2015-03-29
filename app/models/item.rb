@@ -10,6 +10,5 @@ def init
 	self.borrower_id ||=0
 end
 
-
 mount_uploader :picture, PictureUploader
 end

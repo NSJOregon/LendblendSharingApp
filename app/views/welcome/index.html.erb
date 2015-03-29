@@ -1,27 +1,5 @@
+
 <head>
 <h1><big><font color="#453E3E" face="MS UI Gothic"><big>LENDBLEND</big></font></big></h1>
-
 </head>
 
-<div>
-  <body background="assets/tools.jpg">
-    <br>
-  </body>
-</div>
-
-
-
-
-<% if user_signed_in? %>
-<li><%= link_to current_user.email, edit_user_registration_path %></li>
-<li><%= link_to "LOGOUT", destroy_user_session_path, method: :delete %></li>
-
-
- <li><%= link_to "Your Items", items_path %></li>
- <li><%= link_to "Borrowed Items", borrowed_index_path %></li>
-
-
-<%else%>
-<li><%= link_to "SIGN UP", new_user_registration_path %></li>
-<li><%= link_to "LOGIN", new_user_session_path %></li>
-<%end%> 
