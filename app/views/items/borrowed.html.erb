@@ -3,7 +3,18 @@
 <% @already_borrowed_items.each do |item| %>
       <%= div_for item do %>
       <h2><%= item.name %></h2>
-      <p><%= item.description %></p>
+      <% d = item.borrowed_period %>
+      <% elapsed_time = ((Time.current - d)/86400).to_i %>
+      <% remaining_days = item.borrow_period-elapsed_time%>
+      <% if remaining_days>0%>
+      <p> Your item is due in <%= remaining_days.to_i %> days. </p>
+      <% end %>
+      <% if elapsed_time>item.borrow_period %>
+      <p> The item is overdue! </p>
+      <% else %>
+      <p> The item is not overdue.</p>
+      <% end %> 
+
       <p><%= image_tag item.picture_url(:thumb) %></p>
       <p><%= link_to 'Show', item_path(item) %></p> 
       <hr>

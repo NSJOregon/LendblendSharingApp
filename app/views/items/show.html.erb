@@ -4,8 +4,33 @@
 <div>
   
   <h1><%= @item.name %></h1>
+  <p>Description:</p>
   <p><%= @item.description %></p>
-  <p><%= image_tag @item.picture_url(:regular) %></p>
+ 
+<% if @item.borrower_id.eql?(0) %>
+   <p> Not Borrowed!</p>
+<%else%>
+
+
+  <p>This item was borrowed on:</p>  
+  <% d = @item.borrowed_period %>
+  <p><%= d.strftime("%b %d, %Y") %></p> 
+  <% elapsed_time = ((Time.current - d)/86400).to_i %>
+  <% remaining_days = @item.borrow_period-elapsed_time%>
+  <% if remaining_days>0%>
+     <p> Your item is due in <%= remaining_days.to_i %> days. </p>
+  <% end %>
   
+  <% if elapsed_time>@item.borrow_period %>
+     <p> The item is overdue! </p>
+  <% else %>
+     <p> The item is not overdue.</p>
+  <% end %>
+
+
+<%end%> 
+
+  <p><%= image_tag @item.picture_url(:regular) %></p>
 
 </div>
+

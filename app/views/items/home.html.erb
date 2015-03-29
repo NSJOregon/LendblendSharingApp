@@ -3,6 +3,50 @@
 </head>
 
 
-<p>You have <%=@owned_items.length%> items in your library and <%= @all_borrowable_items.length %>to lend.</p>
+<p>You have <%=@owned_items.length%> items in your library. </p>
 
-<p>You have borrowed <%= @already_borrowed_items.length%></p>
+<p>There are <%= @all_borrowable_items.length %> items you can borrow.</p>
+
+<p>You have borrowed <%= @already_borrowed_items.length%> item<% if @already_borrowed_items.length>1 %>s
+    <%end%>
+</p>
+
+<table border="0" cellpadding="2" cellspacing="2" width="100%">
+   <tbody>
+      <tr>
+		<td valign="top">ITEM NAME<br>
+		</td>
+		<td valign="top">STATUS
+		<br>
+		</td>
+      
+			<% @already_borrowed_items.each do |item| %>
+   			<%= div_for item do %>
+   
+  		    <% d = item.borrowed_period %>
+      		<% elapsed_time = ((Time.current - d)/86400).to_i %>
+            <% remaining_days = item.borrow_period-elapsed_time%>
+   
+		    <tr>
+				<td valign="top"><%= item.name %><br>
+				</td>
+	    		<td valign="top">      
+           			<% if remaining_days>0 %>
+            		This item is due in <%= remaining_days.to_i %> days.
+		            <% end %>
+
+        		    <% if elapsed_time>item.borrow_period %>
+               This item is overdue!
+ 		           <% end %>
+	    		   <br>
+           		</td>
+
+          </tr>
+          <% end %>
+
+          <% end %>
+   </tbody>
+</table>
+
+
+

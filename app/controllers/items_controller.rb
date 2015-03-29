@@ -1,6 +1,9 @@
 class ItemsController < ApplicationController
+  
+  require "date"
   before_action :authenticate_user!, only: [:create, :update, :destroy]
   
+
   def index
     @items = current_user.items.all
   end
@@ -18,7 +21,10 @@ class ItemsController < ApplicationController
 
   def borrow_borrowable
     @item = Item.find(params[:id])
+    @item.borrowed_period=DateTime.now
     current_user.borrow(@item)  
+    
+
     redirect_to items_borrowable_path
   end
 
@@ -46,7 +52,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = current_user.items.new(item_params)
-    
+    @item.borrowed_period=DateTime.now
     if @item.save
       redirect_to items_path
     else
@@ -57,7 +63,7 @@ class ItemsController < ApplicationController
 
   def update
     @item = current_user.items.find(params[:id])
-
+    @item.borrowed_period=DateTime.now
     if @item.update(item_params)
 
        redirect_to items_path

@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150317141703) do
+ActiveRecord::Schema.define(version: 20150329014214) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.string   "image"
     t.integer  "borrow_period"
-    t.integer  "borrowed_period"
+    t.datetime "borrowed_period"
     t.integer  "lender_id"
     t.integer  "borrower_id"
     t.datetime "created_at",      null: false
