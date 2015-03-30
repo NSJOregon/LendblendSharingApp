@@ -2,14 +2,16 @@
 <h1><big><font color="#453E3E" face="MS UI Gothic"><big>LENDBLEND</big></font></big></h1>
 </head>
 
+<h3>Welcome <%=@current_user.first_name%>!</h3>
 
-<p>You have <%=@owned_items.length%> items in your library. </p>
 
-<p>There are <%= @all_borrowable_items.length %> items you can borrow.</p>
+<p>You have <%=@owned_items.length%> items in your library. <br> 
+There are <%= @all_borrowable_items.length %> items you can borrow.</p>
 
-<p>You have borrowed <%= @already_borrowed_items.length%> item<% if @already_borrowed_items.length>1 %>s
-    <%end%>
-</p>
+<% if @already_borrowed_items.length > 0 %>
+
+You have borrowed <%= @already_borrowed_items.length%> item<% if @already_borrowed_items.length>1 %>s
+    <%end%>.
 
 <table border="0" cellpadding="2" cellspacing="2" width="100%">
    <tbody>
@@ -45,6 +47,10 @@
           <% end %>
 
           <% end %>
+<% else %>
+   You have not borrowed any items. 
+<%end%>
+
    </tbody>
 </table>
 

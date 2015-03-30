@@ -4,29 +4,43 @@
 <div>
   
   <h1><%= @item.name %></h1>
-  <p>Description:</p>
-  <p><%= @item.description %></p>
- 
-<% if @item.borrower_id.eql?(0) %>
-   <p> Not Borrowed!</p>
-<%else%>
+  Description: <%= @item.description %><br>
+  Borrowable Period: <%= @item.borrow_period %>
+  <br>
+   <% if @item.borrower_id.eql?(0) %>
+      <p> Has not been borrowed!</p>
+   <%else%>
 
 
-  <p>This item was borrowed on:</p>  
+
+  This item was borrowed on:  
   <% d = @item.borrowed_period %>
-  <p><%= d.strftime("%b %d, %Y") %></p> 
+  <%= d.strftime("%b %d, %Y") %> 
   <% elapsed_time = ((Time.current - d)/86400).to_i %>
   <% remaining_days = @item.borrow_period-elapsed_time%>
   <% if remaining_days>0%>
-     <p> Your item is due in <%= remaining_days.to_i %> days. </p>
+  <br>
+     Your item is due in: <%= remaining_days.to_i %> days. 
   <% end %>
   
   <% if elapsed_time>@item.borrow_period %>
-     <p> The item is overdue! </p>
+      The item is overdue! <br>
   <% else %>
-     <p> The item is not overdue.</p>
+     The item is not overdue. <br>
   <% end %>
 
+  <% if !@item.borrower_id.eql?(current_user.id) %>
+	  <p>Borrower Contact Information:<br>
+	  <%=@item.borrower.first_name%> <%=@item.borrower.last_name%><br>
+	  <%=@item.borrower.street_address%><br> 
+	  
+	  <%=@item.borrower.city_name%>, 
+	  <%=@item.borrower.state_name%> 
+	  <%=@item.borrower.zip_code%><br> 
+	  <%=@item.borrower.phone_number%>
+	  <%=@item.borrower.email%> 
+	  </p>
+  <%end%>
 
 <%end%> 
 

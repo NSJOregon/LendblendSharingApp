@@ -21,6 +21,47 @@
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
 
+  <hr>
+  <p> Personal Information</p>
+
+  <div class="form-group">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name, autocomplete: "off" %>
+  </div>
+
+ <div class="form-group">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name, autocomplete: "off" %>
+  </div>
+
+
+ <div class="form-group">
+    <%= f.label :street_address %><br />
+    <%= f.text_field :street_address, autocomplete: "off" %>
+  </div>
+
+ <div class="form-group">
+    <%= f.label :city_name %><br />
+    <%= f.text_field :city_name, autocomplete: "off" %>
+  </div>
+
+ <div class="form-group">
+    <%= f.label :state_name %><br />
+    <%= f.text_field :state_name, autocomplete: "off" %>
+  </div>
+
+ <div class="form-group">
+    <%= f.label :zip_code %><br />
+    <%= f.text_field :zip_code, autocomplete: "off" %>
+  </div>
+
+ <div class="form-group">
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number, autocomplete: "off" %>
+  </div>
+
+
+
   <div class="actions">
     <%= f.submit "Sign up" %>
   </div>

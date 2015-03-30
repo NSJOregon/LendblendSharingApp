@@ -12,20 +12,20 @@
       <p><%= item.description %></p>
       <p><%= image_tag item.picture_url(:thumb) %></p>
     
-		<% if item.borrower_id.eql?(0) %>
-			<p> Not Borrowed!</p>
-		<%else%>
+		  <% if item.borrower_id.eql?(0) %>
+			      <p> Has not been borrowed!</p>
+		  <%else%>
 
-			<p> Borrowed!</p>
-			<%= link_to "Item was returned", returned_path(item)%> 				
-		<%end%> 
+			   <p> Has been borrowed!</p>
+			   <%= link_to "Item was returned", returned_path(item)%> 				
+		  <%end%> 
 
 
       	<p><%= link_to 'Show', item_path(item) %> |
         <%= link_to 'Edit', edit_item_path(item) %> |
         <%= link_to 'Delete', item, :method => :delete, :confirm => "Are you sure?" %></p>
         <hr>
-    <% end %>
 
+    <% end %>
 <% end %>
 
