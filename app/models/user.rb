@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
     # for now.
 
     # Lender
-    has_many :items, foreign_key: :lender_id, dependent:destroy 
+    has_many :items, foreign_key: :lender_id, dependent: :destroy 
     has_many :lenders, through: :items
 
 
@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
     # The corresponding code is a reversal of the previous. 
     
     # Borrower
-    has_many :borrowed_items, foreign_key: :borrower_id, class_name: 'Item', dependent:destroy
+    has_many :borrowed_items, foreign_key: :borrower_id, class_name: 'Item'
     has_many :borrowers, through: :borrowed_items 
 
     # To do create a scope for items which have been specifically borrowed and no longer in the 
