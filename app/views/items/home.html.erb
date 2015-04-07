@@ -26,7 +26,7 @@ You have borrowed <%= @already_borrowed_items.length%> item<% if @already_borrow
    			<%= div_for item do %>
    
   		    <% d = item.borrowed_period %>
-      		<% elapsed_time = ((Time.current - d)/86400).to_i %>
+      		<% elapsed_time = ((DateTime.now.to_i - d.to_i)/86400).to_i%>
             <% remaining_days = item.borrow_period-elapsed_time%>
    
 		    <tr>

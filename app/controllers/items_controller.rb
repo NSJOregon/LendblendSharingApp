@@ -21,7 +21,9 @@ class ItemsController < ApplicationController
 
   def borrow_borrowable
     @item = Item.find(params[:id])
+   # <%=Date.today%>
     @item.borrowed_period=DateTime.now
+ #   @item.borrowed_period=DateTime.now
     current_user.borrow(@item)  
     
 

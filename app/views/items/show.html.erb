@@ -14,21 +14,10 @@
 
 
   This item was borrowed on:  
-  <% d = @item.borrowed_period %>
-  <%= d.strftime("%b %d, %Y") %> 
-  <% elapsed_time = ((Time.current - d)/86400).to_i %>
-  <% remaining_days = @item.borrow_period-elapsed_time%>
-  <% if remaining_days>0%>
-  <br>
-     Your item is due in: <%= remaining_days.to_i %> days. 
-  <% end %>
   
-  <% if elapsed_time>@item.borrow_period %>
-      The item is overdue! <br>
-  <% else %>
-     The item is not overdue. <br>
-  <% end %>
-
+  <%d = @item.borrowed_period %>
+  <%= DateTime.strptime(d.to_s,'%s')%>
+ 
   <% if !@item.borrower_id.eql?(current_user.id) %>
 	  <p>Borrower Contact Information:<br>
 	  <%=@item.borrower.first_name%> <%=@item.borrower.last_name%><br>
@@ -42,6 +31,8 @@
 	  </p>
   <%end%>
 
+  
+  
 <%end%> 
 
   <p><%= image_tag @item.picture_url(:regular) %></p>
