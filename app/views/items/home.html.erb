@@ -1,58 +1,72 @@
 <head>
-<h1><big><font color="#453E3E" face="MS UI Gothic"><big>LENDBLEND</big></font></big></h1>
+  <h1><big><font color="#453E3E" face="MS UI Gothic"><big>LENDBLEND</big></font></big></h1>
+
+  <style>
+     h1 {
+      font-size: 250%;
+     }
+
+    body{
+      background: url('/assets/tools_fade.jpg') repeat fixed;
+      -moz-background-size: auto;
+      -webkit-background-size: auto;
+      background-size: auto;
+     }
+  </style>
 </head>
 
-<h3>Welcome <%=@current_user.first_name%>!</h3>
+<body>
+    <h3>Welcome <%=@current_user.first_name%>!</h3>
 
 
-<p>You have <%=@owned_items.length%> items in your library. <br> 
-There are <%= @all_borrowable_items.length %> items you can borrow.</p>
+    <p>You have <%=@owned_items.length%> items in your library. <br> 
+    There are <%= @all_borrowable_items.length %> items you can borrow.</p>
 
-<% if @already_borrowed_items.length > 0 %>
+    <% if @already_borrowed_items.length > 0 %>
 
-You have borrowed <%= @already_borrowed_items.length%> item<% if @already_borrowed_items.length>1 %>s
-    <%end%>.
+    You have borrowed <%= @already_borrowed_items.length%> item<% if @already_borrowed_items.length>1 %>s
+        <%end%>.
 
-<table border="0" cellpadding="2" cellspacing="2" width="100%">
-   <tbody>
-      <tr>
-		<td valign="top">ITEM NAME<br>
-		</td>
-		<td valign="top">STATUS
-		<br>
-		</td>
-      
-			<% @already_borrowed_items.each do |item| %>
-   			<%= div_for item do %>
-   
-  		    <% d = item.borrowed_period %>
-      		<% elapsed_time = ((DateTime.now.to_i - d.to_i)/86400).to_i%>
-            <% remaining_days = item.borrow_period-elapsed_time%>
-   
-		    <tr>
-				<td valign="top"><%= item.name %><br>
-				</td>
-	    		<td valign="top">      
-           			<% if remaining_days>0 %>
-            		This item is due in <%= remaining_days.to_i %> days.
-		            <% end %>
+    <table border="0" cellpadding="2" cellspacing="2" width="100%">
+       <tbody>
+          <tr>
+        <td valign="top">ITEM NAME<br>
+        </td>
+        <td valign="top">STATUS
+        <br>
+        </td>
 
-        		    <% if elapsed_time>item.borrow_period %>
-               This item is overdue!
- 		           <% end %>
-	    		   <br>
-           		</td>
+          <% @already_borrowed_items.each do |item| %>
+            <%= div_for item do %>
 
-          </tr>
-          <% end %>
+              <% d = item.borrowed_period %>
+              <% elapsed_time = ((DateTime.now.to_i - d.to_i)/86400).to_i%>
+                <% remaining_days = item.borrow_period-elapsed_time%>
 
-          <% end %>
-<% else %>
-   You have not borrowed any items. 
-<%end%>
+            <tr>
+            <td valign="top"><%= item.name %><br>
+            </td>
+              <td valign="top">      
+                    <% if remaining_days>0 %>
+                    This item is due in <%= remaining_days.to_i %> days.
+                    <% end %>
 
-   </tbody>
-</table>
+                    <% if elapsed_time>item.borrow_period %>
+                   This item is overdue!
+                   <% end %>
+                 <br>
+                  </td>
 
+              </tr>
+              <% end %>
 
+              <% end %>
+    <% else %>
+       You have not borrowed any items. 
+    <%end%>
+
+       </tbody>
+    </table>
+
+</body>
 

@@ -7,10 +7,12 @@
 
       <% d=item.borrowed_period %>
       
-      <%= DateTime.strptime(d.to_s,'%s')%>
+      Your item was borrowed on:
+      <%= DateTime.strptime(d.to_s,'%s').strftime('%m/%d/%y')%>   
+
       <% elapsed_time = ((DateTime.now.to_i - d.to_i)/86400).to_i %>
 
-      <%=remaining_days = item.borrow_period-elapsed_time %>
+      <%remaining_days = item.borrow_period-elapsed_time %>
       <% if remaining_days>0%>
       <p> Your item is due in <%= remaining_days.to_i %> days. </p>
       <% end %>

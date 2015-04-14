@@ -1,5 +1,19 @@
-<h2>Sign up</h2>
+<style>
+   h1 {
+    font-size: 250%;
+  
+   }
+  
+  body{
+    background: url('/assets/tools.jpg') repeat fixed;
+    -moz-background-size: auto;
+    -webkit-background-size: auto;
+    background-size: auto;
+   }
+</style>
 
+<h1><font color="#FFFFFF" face="MS UI Gothic">SIGN UP</font></h1>
+<div><font color="#FFFFFF" face="MS UI Gothic">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -66,5 +80,5 @@
     <%= f.submit "Sign up" %>
   </div>
 <% end %>
-
+  </font></div>
 <%= render "devise/shared/links" %>

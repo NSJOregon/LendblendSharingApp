@@ -17,16 +17,14 @@ class ItemsController < ApplicationController
 
   def borrowable
     @all_borrowable_items = current_user.borrowable_items
-   end
+    @item2
+    
+  end
 
   def borrow_borrowable
     @item = Item.find(params[:id])
-   # <%=Date.today%>
     @item.borrowed_period=DateTime.now
- #   @item.borrowed_period=DateTime.now
     current_user.borrow(@item)  
-    
-
     redirect_to items_borrowable_path
   end
 
