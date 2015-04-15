@@ -1,9 +1,10 @@
 <h1>BORROWABLE ITEMS</h1>
 <hr>
-
-<%if @item2 != nil%>
-You borrowed <%=@item.name %>!
+   <h3><%= @item2 %></h3>
+<% if @item2 !=""%>
+   <hr>
 <%end%>
+
 <% @all_borrowable_items.each do |item| %>
       <%= div_for item do %>
       	<h2><%= item.name %></h2>
